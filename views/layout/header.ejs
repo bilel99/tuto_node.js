@@ -1,0 +1,53 @@
+<!Doctype html>
+<html>
+<head>
+    <title>Livre d'or</title>
+
+    <link rel="stylesheet" href="/assets/lib/semantic/semantic.min.css">
+    <script src="/assets/lib/jquery/dist/jquery.min.js"></script>
+
+    <style>
+        .main.container{
+            margin-top: 7em;
+        }
+    </style>
+</head>
+<body>
+<div class="ui fixed inverted menu">
+
+    <% if(locals.crudSession && locals.crudSession.user) { %>
+        <a href="/commentaire" class="header item">Accueil</a>
+
+        <div class="right menu">
+            <a href="/changePassword/<%= crudSession.user[0].id %>" class="ui item">
+                <span>Changer mon mot de passe</span>
+            </a>
+
+            <a href="/profil/<%= crudSession.user[0].id %>" class="ui item">
+                <%= 'Bonjour, ' + crudSession.user[0].prenom %>
+            </a>
+
+            <a class="ui item" href="/logout">
+                Logout
+            </a>
+        </div>
+
+    <% }else{ %>
+        <a href="/" class="header item">Login</a>
+        <a href="/register" class="header item">Register</a>
+    <% } %>
+</div>
+
+<div class="ui main container">
+    <% if(locals.flash && locals.flash.error) { %>
+        <div class="ui negative message">
+            <%= flash.error %>
+        </div>
+    <% } %>
+
+
+    <% if(locals.flash && locals.flash.success) { %>
+        <div class="ui positive message">
+            <%= flash.success %>
+        </div>
+    <% } %>

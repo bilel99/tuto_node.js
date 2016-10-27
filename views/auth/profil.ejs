@@ -1,0 +1,62 @@
+<% include ../layout/header %>
+<link rel="stylesheet" href="/assets/css/register.css">
+
+<div class="ui one column center aligned grid">
+    <div class="column six wide form-holder">
+        <h2 class="center aligned header form-head">Profil</h2>
+        <div class="ui form">
+
+            <% for(result of results){ %>
+                <form enctype="multipart/form-data" action="/profil/<%= result.id %>" method="POST">
+
+                    <div class="field">
+                        <input type="email" name="email" id="email" value="<%= result.email %>" placeholder="email">
+                    </div>
+
+                    <div class="field">
+                        <input type="text" name="nom" id="nom" value="<%= result.nom %>" placeholder="nom">
+                    </div>
+
+                    <div class="field">
+                        <input type="text" name="prenom" id="prenom" value="<%= result.prenom %>" placeholder="prenom">
+                    </div>
+
+                    <div class="field">
+                        <input type="date" name="date_naissance" id="date_naissance" value="<%= result.date_naissance.format("YYYY-MM-DD") %>" placeholder="date de naissance">
+                    </div>
+
+                    <div class="field">
+                        <input type="text" name="avatar" id="avatar" placeholder="Votre Avatar" value="<%= result.avatar %>">
+                    </div>
+
+                    <input type="text" name="monImageFile" id="monImageFile" value="<%= result.monimage %>">
+                    <div class="field">
+                        <input type="file" name="monimage" id="monimage">
+                    </div>
+
+                    <h3>Choix de l'image</h3>
+                    <div class="field">
+                        <input type="radio" name="choixImage" value="avatar" <%= result.choixImage === 'avatar' ? 'checked' : '' %>>
+                        <label>avatar</label>
+                    </div>
+
+                    <div class="field">
+                        <input type="radio" name="choixImage" value="monImage" <%= result.choixImage === 'monImage' ? 'checked' : '' %>>
+                        <label>Mon image</label>
+                    </div>
+
+
+                    <hr>
+                    <div class="field">
+                        <input type="submit" value="Sauvegarder" class="ui button large fluid green">
+                    </div>
+
+                </form>
+
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+<% include ../layout/footer %>

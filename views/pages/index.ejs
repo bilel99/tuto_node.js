@@ -1,0 +1,94 @@
+<% include ../layout/header %>
+
+
+<% for(message of messages){ %>
+    <script>
+        $(document).ready(function(){
+            $('.edit_content_click_<%= message.id %>').on('click', function(){
+                $('.edit_content_<%= message.id %>').toggle(400)
+            })
+        })
+    </script>
+<% } %>
+
+
+<form action="/commentaire" method="post" class="ui form">
+    <div class="field">
+        <label for="message"> Message </label>
+        <textarea name="message" id="message"></textarea>
+    </div>
+
+    <button type="submit" class="ui blue labeled submit icon button">
+        <i class="icon edit"></i> Envoyer
+    </button>
+</form>
+
+
+<div class="ui comments">
+    <h3 class="ui dividing header">Commentaires</h3>
+    <% for(message of messages){ %>
+        <div class="comment">
+            <% if(message.choixImage === 'avatar'){ %>
+                <a class="avatar" href="/show/<%= message.id %>">
+                    <img src="<%= message.avatar %>" alt="avatar">
+                </a>
+            <% }else if(message.choixImage === 'monImage'){ %>
+                <a class="avatar" href="/show/<%= message.id %>">
+                    <img src="/assets/upload/<%= message.monimage %>" alt="avatar">
+                </a>
+            <% } %>
+
+
+            <% if(locals.crudSession && locals.crudSession.user){ %>
+                <% if(message.users_id == crudSession.user[0].id){ %>
+                    <a class="ui inverted blue button edit_content_click_<%= message.id %>" style="float: right;">
+                        <i class="icon edit"></i> Modifier
+                    </a>
+                <% } %>
+            <% } %>
+
+            <% if(message.users_id == crudSession.user[0].id){ %>
+                <form action="/delete/<%= message.id %>" method="post">
+                    <button type="submit" class="ui inverted red button" style="float: right;">
+                        <i class="icon delete"></i> Supprimer
+                    </button>
+                </form>
+            <% } %>
+
+
+            <div class="content">
+                <div class="metadata">
+                    <div class="date">
+                        <%= message.created_at.fromNow() %>
+                    </div>
+                </div>
+                <div class="test">
+                    <%= message.content %>
+                </div>
+
+
+                <div class="edit_content_<%= message.id %>" style="display: none;">
+                    <form action="/commentaire/<%= message.id %>" method="post" class="ui form">
+                        <div class="field">
+                            <input type="hidden" name="id" id="id" value="<%= message.id %>">
+                        </div>
+
+                        <div class="field">
+                            <label for="message"> Message </label>
+                            <textarea name="content" id="content"><%= message.content %></textarea>
+                        </div>
+
+                        <button type="submit" class="ui blue labeled submit icon button">
+                            <i class="icon edit"></i> Modifier
+                        </button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    <% } %>
+</div>
+
+
+<% include ../layout/footer %>

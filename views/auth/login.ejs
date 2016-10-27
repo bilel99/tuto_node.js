@@ -1,0 +1,40 @@
+<% include ../layout/header %>
+<link rel="stylesheet" href="/assets/css/login.css">
+
+<div class="ui one column center aligned grid">
+    <div class="column six wide form-holder">
+        <h2 class="center aligned header form-head">Sign in</h2>
+        <div class="ui form">
+            <form action="/login" method="POST">
+
+                <div class="field">
+                    <input type="email" name="email" id="email" placeholder="email">
+                </div>
+
+                <div class="field">
+                    <input type="password" name="password" id="password" placeholder="password">
+                </div>
+
+                <hr>
+                <div class="field">
+                    <input type="submit" id="submit" value="sign in" class="ui button large fluid green">
+                </div>
+
+                <div class="inline field">
+                    <div class="ui checkbox">
+                        <input type="checkbox">
+                        <label>Remember me</label>
+                    </div>
+                </div>
+
+                <div class="inline field">
+                    <a href="/forgotPassword" class="forgotPassword"><label class="forgotPassword">Mot de passe oublier</label></a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<% include ../layout/footer %>
