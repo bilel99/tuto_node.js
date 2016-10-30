@@ -85,5 +85,8 @@ module.exports = function(app){
     app.post('/webservice/users', UsersController.create)
     app.put('/webservice/users/:id', UsersController.update)
     app.delete('/webservice/users/:id', UsersController.delete)
+    
+    // Login
+    app.post('/webservice/login', UsersController.login)
 
 }
