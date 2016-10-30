@@ -75,15 +75,15 @@ module.exports = function(app){
      * return json.stringify()
      */
     app.get('/webservice/messages', MessagesController.get)
-    app.get('/webservice/findMessage/:id', MessagesController.find)
-    app.post('/webservice/postMessage', MessagesController.create)
-    app.put('/webservice/putMessage/:id', MessagesController.update)
-    app.delete('/webservice/deleteMessage/:id', MessagesController.delete)
+    app.get('/webservice/messages/:id', MessagesController.find)
+    app.post('/webservice/messages', MessagesController.create)
+    app.put('/webservice/messages/:id', MessagesController.update)
+    app.delete('/webservice/messages/:id', MessagesController.delete)
 
     app.get('/webservice/users', UsersController.get)
-    app.get('/webservice/user/:id', UsersController.find)
-    app.post('/webservice/user', UsersController.create)
-    app.put('/webservice/user/:id', UsersController.update)
-    app.delete('/webservice/user/:id', UsersController.delete)
+    app.get('/webservice/users/:id', UsersController.find)
+    app.post('/webservice/users', UsersController.create)
+    app.put('/webservice/users/:id', UsersController.update)
+    app.delete('/webservice/users/:id', UsersController.delete)
 
 }
