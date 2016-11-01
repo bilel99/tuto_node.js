@@ -86,7 +86,10 @@ module.exports = function(app){
     app.put('/webservice/users/:id', UsersController.update)
     app.delete('/webservice/users/:id', UsersController.delete)
     
-    // Login
+    // Authentification
     app.post('/webservice/login', UsersController.login)
+
+    // Profil
+    app.put('/webservice/changePassword/:id', UsersController.changePassword)
 
 }

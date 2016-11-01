@@ -48,6 +48,13 @@ class UsersController {
             }
         })
     }
+
+    static changePassword(request, response){
+        let Users = require('../../models/ws_users')
+        Users.changePassword(request.body.id, request.body.password, (rows) => {
+            response.end(JSON.stringify({"Error" : false, "Message" : "Changement mot de passe effectué avec succès", "Resultat" : rows}))
+        })
+    }
     
 }
 
